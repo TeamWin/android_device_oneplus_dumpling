@@ -22,6 +22,10 @@ $(call inherit-product, build/target/product/embedded.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.keystore=msm8998 \
+    ro.hardware.gatekeeper=msm8998
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := dumpling
 PRODUCT_NAME := omni_dumpling
@@ -30,6 +34,6 @@ PRODUCT_MODEL := OnePlus A5010
 PRODUCT_MANUFACTURER := OnePlus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="OnePlus5T-user 8.1.0 OPM1.171019.011 1807181208 release-keys"
+    PRIVATE_BUILD_DESC="OnePlus5T-user 9 PKQ1.180716.001 1902221914 release-keys"
 
-BUILD_FINGERPRINT := OnePlus/OnePlus5T/OnePlus5T:8.1.0/OPM1.171019.011/1807181208:user/release-keys
+BUILD_FINGERPRINT := OnePlus/OnePlus5T/OnePlus5T:9/PKQ1.180716.001/1902221914:user/release-keys
