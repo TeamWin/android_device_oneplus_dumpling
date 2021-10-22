@@ -15,4 +15,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_dumpling.mk
+    $(LOCAL_DIR)/twrp_dumpling.mk
+
+COMMON_LUNCH_CHOICES := \
+    twrp_dumpling-eng \
+    twrp_dumpling-userdebug

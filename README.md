@@ -1,18 +1,6 @@
 # android_device_oneplus_dumpling
 Tree for building TWRP for OnePlus 5T
 
-## Kernel Sources
-
-https://github.com/lineageos/android_kernel_oneplus_msm8998/tree/lineage-15.1
-
-## To compile
-
-export ALLOW_MISSING_DEPENDENCIES=true
-
-. build/envsetup.sh && lunch omni_dumpling-eng
-
-mka adbd recoveryimage
-
 ## Device specifications
 
 | Device       | OnePlus 5T                                      |
@@ -33,3 +21,45 @@ mka adbd recoveryimage
 ## Device picture
 
 ![OnePlus 5T](https://image01.oneplus.net/shop/201711/16/1850/c2baf281695709898707dd551a05274c_260_0.png "OnePlus 5T in black")
+
+## Kernel
+
+Kernel source:
+https://github.com/LineageOS/android_kernel_oneplus_msm8998
+
+## Compile
+
+First repo init the TWRP 11.0 tree (and necessary qcom dependencies):
+
+```
+mkdir ~/android/twrp-11.0
+cd ~/android/twrp-11.0
+repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11.0
+mkdir -p .repo/local_manifests
+curl https://raw.githubusercontent.com/TeamWin/buildtree_manifests/master/min-aosp-11/qcom.xml > .repo/local_manifests/qcom.xml
+```
+
+Then add to a local manifest (if you don't have .repo/local_manifest then make that directory and make a blank file and name it something like twrp.xml):
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="LineageOS/android_kernel_oneplus_msm8998" path="kernel/oneplus/msm8998" remote="github" revision="lineage-18.1"/>
+  <project name="faoliveira78/android_device_oneplus_dumpling" path="device/oneplus/dumpling" remote="github" revision="android-11"/>
+</manifest>
+```
+
+Now you can sync your source:
+
+```
+repo sync
+```
+
+Finally execute these:
+
+```
+. build/envsetup.sh
+export LC_ALL=C
+lunch twrp_dumpling-eng
+mka recoveryimage
+```
