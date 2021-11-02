@@ -32,11 +32,11 @@ PRODUCT_PACKAGES += \
 # tzdata
 PRODUCT_PACKAGES += \
     tzdata_twrp
-    
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=msm8998 \
     ro.hardware.gatekeeper=msm8998 \
-    ro.vendor.build.security_patch=2099-12-31
+    ro.vendor.build.security_patch=2127-12-31
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := dumpling
